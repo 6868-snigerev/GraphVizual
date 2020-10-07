@@ -11,11 +11,9 @@ struct verticale {
 void initVerticales(struct verticale *verticales) {
     int mx[SIZE][SIZE];
     FILE *fin;
-    int k = 1;
     for (int i = 0; i < SIZE; i++) {
-        printf("Enter the %d edge value\n", k);
+        printf("Enter the %d edge value\n", i+1);
         scanf("%d", &verticales[i].value);
-        k++;
     }
 
     for (int i = 0; i < SIZE; i++) {
@@ -42,7 +40,7 @@ void initVerticales(struct verticale *verticales) {
         printf("Error");
     }
 }
-){
+void vizualgraph(struct verticale *verticales){
     FILE *file;
     file = fopen("graph.dot", "w");
         if (file != NULL) {
