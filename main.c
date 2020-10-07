@@ -3,22 +3,22 @@
 
 #define SIZE 4
 
-struct verticale {
+struct top {
     int value;
-    int arrEdges[SIZE];
+    int arrTops[SIZE];
 };
 
-void initVerticales(struct verticale *verticales) {
+void initTops(struct top *tops) {
     int mx[SIZE][SIZE];
     FILE *fin;
     for (int i = 0; i < SIZE; i++) {
         printf("Enter the %d edge value\n", i+1);
-        scanf("%d", &verticales[i].value);
+        scanf("%d", &tops[i].value);
     }
 
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            verticales[i].arrEdges[j] = 0;
+            tops[i].arrTops[j] = 0;
         }
     }
 
@@ -30,7 +30,7 @@ void initVerticales(struct verticale *verticales) {
 
                 fscanf(fin, "%d,", &mx[i][j]);
                 if (mx[i][j] == 1) {
-                    verticales[j].arrEdges[i] = verticales[j].value;
+                    tops[j].arrTops[i] = tops[j].value;
                 }
             }
         }
@@ -40,7 +40,7 @@ void initVerticales(struct verticale *verticales) {
         printf("Error");
     }
 }
-void vizualgraph(struct verticale *verticales){
+void vizualgraph(struct top *tops){
     FILE *file;
     file = fopen("graph.dot", "w");
         if (file != NULL) {
@@ -49,8 +49,8 @@ void vizualgraph(struct verticale *verticales){
 
                 for (int j = 0; j < SIZE; j++) {
 
-                    if(verticales[j].arrEdges[i]!=0){
-                    fprintf(file, "  %d -- %d\n", verticales[i].value, verticales[j].arrEdges[i]);
+                    if(tops[j].arrTops[i]!=0){
+                    fprintf(file, "  %d -- %d\n", tops[i].value, tops[j].arrTops[i]);
                     }
                 }
             }
@@ -63,8 +63,8 @@ void vizualgraph(struct verticale *verticales){
 }
 
 void main(void){
-    struct verticale verticales[SIZE];
-    initVerticales(&verticales);
-    vizualgraph(&verticales);
+    struct top tops[SIZE];
+    initTops(&tops);
+    vizualgraph(&tops);
 }
 
