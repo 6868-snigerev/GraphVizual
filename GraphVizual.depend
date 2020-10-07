@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1601984259 source:c:\users\mi\desktop\graphvizual\main.c
+	<stdio.h>
+	<stdlib.h>
+
