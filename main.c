@@ -8,6 +8,35 @@ struct top {
     int arrTops[SIZE];
 };
 
+void checkCoherence(struct top *tops){
+    int numEdges = 0;
+    int flag = 0;
+
+    for (int i = 0; i < SIZE; i++){
+        for (int j = 0; j < SIZE; j++) {
+            if (tops[j].arrTops[i] == 1){
+                numEdges++;
+            }
+        }
+    }
+
+    for (int i = 0; i < SIZE; i++) {
+
+        if (tops[i].arrTops[i] != 0){
+            flag = 1;
+        }
+    }
+
+    if((numEdges < ((SIZE-1)*(SIZE-2))/2) && flag == 0){
+        printf("\nThis graph is connectivity");
+    } else if (flag == 1){
+        printf("\nThe requirements aren't met");
+    } else {
+        printf("\nThis graph is not connectivity");
+    }
+
+}
+
 void initTops(struct top *tops) {
     int mx[SIZE][SIZE];
     FILE *fin;
@@ -66,5 +95,6 @@ void main(void){
     struct top tops[SIZE];
     initTops(&tops);
     vizualgraph(&tops);
+    checkCoherence(&tops);
 }
 
