@@ -14,7 +14,7 @@ void checkCoherence(struct top *tops){
 
     for (int i = 0; i < SIZE; i++){
         for (int j = 0; j < SIZE; j++) {
-            if (tops[j].arrTops[i] == 1){
+            if (tops[i].arrTops[j] == 1){
                 numEdges++;
             }
         }
@@ -34,7 +34,6 @@ void checkCoherence(struct top *tops){
     } else {
         printf("\nThis graph is not connectivity");
     }
-
 }
 
 void initTops(struct top *tops) {
@@ -90,11 +89,24 @@ void vizualgraph(struct top *tops){
             exit("Error");
         }
 }
+void checkLoops(struct top *tops){
+    int quantity = 0;
+
+    for (int i = 0; i < SIZE; i++) {
+        if (tops[i].arrTops[i] != 0){
+            quantity++;
+        }
+    }
+
+    printf("\nQuantity of loops = %d", quantity);
+
+}
 
 void main(void){
     struct top tops[SIZE];
     initTops(&tops);
     vizualgraph(&tops);
     checkCoherence(&tops);
+    checkLoops(&tops);
 }
 
